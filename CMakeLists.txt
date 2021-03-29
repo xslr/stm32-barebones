@@ -18,12 +18,14 @@ set(CMAKE_INCLUDE_CURRENT_DIR TRUE)
 # that you should have set via command line
 find_package(CMSIS COMPONENTS STM32F4 REQUIRED)
 find_package(HAL COMPONENTS STM32F4 REQUIRED)
+find_package(FreeRTOS COMPONENTS ARM_CM4F REQUIRED)
 
 # create a target called `stm32-blinky-f4` using blinky.c
 # listing the header is nice an explicit but unnecessary
 add_executable(stm32-blinky-f4
   src/blinky.c
   src/stm32f4xx_it.c
+  src/stm32f4xx_it.h
   src/stm32f4xx_hal_conf.h)
 
 target_include_directories(stm32-blinky-f4
@@ -40,3 +42,29 @@ target_link_libraries(stm32-blinky-f4
   CMSIS::STM32::F407VG
   STM32::NoSys
 )
+
+# create a target called `stm32-freertos-f4` using freertos.c
+# listing the header is nice an explicit but unnecessary
+
+add_executable(stm32-freertos.elf
+  src/stm32f4_freertos.c
+
+  #src/stm32f4xx_it.c
+  #src/stm32f4xx_it.h
+
+  src/FreeRTOSConfig.h
+  src/stm32f4xx_hal_conf.h)
+
+target_include_directories(stm32-freertos.elf
+  PRIVATE src)
+
+target_link_libraries(stm32-freertos.elf PRIVATE
+  FreeRTOS::Timers
+  FreeRTOS::Heap::1
+  FreeRTOS::ARM_CM4F
+  HAL::STM32::F4::RCC
+  HAL::STM32::F4::GPIO
+  HAL::STM32::F4::CORTEX
+  CMSIS::STM32::F407VG
+  STM32::NoSys
+  )
