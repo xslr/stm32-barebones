@@ -6,4 +6,4 @@
 	url = git@github.com:STMicroelectronics/STM32CubeF4.git
 [submodule "third_party/FreeRTOS"]
 	path = third_party/FreeRTOS
-	url = https://github.com/FreeRTOS/FreeRTOS
+	url = git@github.com:FreeRTOS/FreeRTOS.git
