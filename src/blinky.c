@@ -3,12 +3,10 @@
 #include "stm32f4xx_it.h"
 
 
-// STM32F4-Discovery green led - PE0
+// Diymore STM32F4 user led - PE0
 #define LED_PORT                GPIOE
 #define LED_PIN                 GPIO_PIN_0
 #define LED_PORT_CLK_ENABLE     __HAL_RCC_GPIOE_CLK_ENABLE
-
-extern "C" {
 
 void SysTick_Handler(void)
 {
@@ -30,7 +28,6 @@ void SysTick_Handler(void)
 #endif
 }
 
-}
 
 void initGPIO()
 {
@@ -45,6 +42,7 @@ void initGPIO()
   LED_PORT_CLK_ENABLE();
   HAL_GPIO_Init(LED_PORT, &GPIO_Config);
 }
+
 
 int main(void)
 {

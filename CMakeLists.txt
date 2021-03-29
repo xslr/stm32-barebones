@@ -22,7 +22,7 @@ find_package(HAL COMPONENTS STM32F4 REQUIRED)
 # create a target called `stm32-blinky-f4` using blinky.c
 # listing the header is nice an explicit but unnecessary
 add_executable(stm32-blinky-f4
-  src/blinky.cc
+  src/blinky.c
   src/stm32f4xx_it.c
   src/stm32f4xx_hal_conf.h)
 
